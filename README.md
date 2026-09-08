@@ -1,0 +1,2 @@
+# BIMO
+Yapamama lüksümüz yoktur
