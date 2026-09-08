@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bimo 1.0</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b0f14;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 64px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 38px;
+    }
+
+    .version {
+      color: #8f9aaa;
+      margin-top: 5px;
+    }
+
+    .slogan {
+      margin: 30px 0;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .box {
+      background: #151b23;
+      border-radius: 18px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      resize: none;
+      border: none;
+      outline: none;
+      border-radius: 12px;
+      padding: 15px;
+      font-size: 16px;
+      background: #0d1218;
+      color: white;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 15px;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: white;
+      color: #0b0f14;
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    #response {
+      margin-top: 20px;
+      line-height: 1.6;
+      color: #d7dde5;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="logo">B</div>
+
+    <h1>Bimo</h1>
+
+    <div class="version">Bimo 1.0</div>
+
+    <div class="slogan">
+      Yapamama lüksümüz yoktur.
+    </div>
+
+    <div class="box">
+
+      <textarea id="question"
+        placeholder="Bimo'ya ne yapmak istediğini yaz..."></textarea>
+
+      <button onclick="bimo()">Bimo'ya Sor</button>
+
+      <div id="response"></div>
+
+    </div>
+
+  </div>
+
+  <script>
+    function bimo() {
+
+      const question =
+        document.getElementById("question").value.trim();
+
+      const response =
+        document.getElementById("response");
+
+      if (!question) {
+        response.innerHTML =
+          "Önce ne yapmak istediğini yaz.";
+        return;
+      }
+
+      response.innerHTML =
+        "Bimo hazırlanıyor... 🚀";
+
+      setTimeout(function() {
+
+        response.innerHTML =
+          "<strong>Bimo:</strong><br>" +
+          "Yapamama lüksümüz yoktur. " +
+          "Bu hedef için birlikte bir yol bulacağız.";
+
+      }, 800);
+    }
+  </script>
+
+</body>
+</html>
