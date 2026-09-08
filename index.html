@@ -140,7 +140,6 @@ function bimo() {
     "Bimo hedefini analiz ediyor... 🧠";
 
   setTimeout(function() {
-
     const text = question.toLowerCase();
 
     let category = "Genel";
@@ -216,33 +215,8 @@ function bimo() {
       }).join("<br>") +
       "<br><br>" +
       "<strong>Yapamama lüksümüz yoktur. 🚀</strong>";
-
   }, 800);
 }
-      const question =
-        document.getElementById("question").value.trim();
-
-      const response =
-        document.getElementById("response");
-
-      if (!question) {
-        response.innerHTML =
-          "Önce ne yapmak istediğini yaz.";
-        return;
-      }
-
-      response.innerHTML =
-        "Bimo hazırlanıyor... 🚀";
-
-      setTimeout(function() {
-
-        response.innerHTML =
-          "<strong>Bimo:</strong><br>" +
-          "Yapamama lüksümüz yoktur. " +
-          "Bu hedef için birlikte bir yol bulacağız.";
-
-      }, 800);
-    }
 function focusQuestion() {
     document.getElementById("question").focus();
 }
