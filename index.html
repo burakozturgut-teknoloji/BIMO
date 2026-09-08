@@ -122,8 +122,103 @@
   </div>
 
   <script>
-    function bimo() {
+  
+function bimo() {
+  const question =
+    document.getElementById("question").value.trim();
 
+  const response =
+    document.getElementById("response");
+
+  if (!question) {
+    response.innerHTML =
+      "Önce ne yapmak istediğini yaz.";
+    return;
+  }
+
+  response.innerHTML =
+    "Bimo hedefini analiz ediyor... 🧠";
+
+  setTimeout(function() {
+
+    const text = question.toLowerCase();
+
+    let category = "Genel";
+    let plan = [];
+
+    if (
+      text.includes("spor") ||
+      text.includes("fitness") ||
+      text.includes("kas") ||
+      text.includes("antrenman")
+    ) {
+      category = "Spor / Fitness";
+
+      plan = [
+        "Hedefini net olarak belirle.",
+        "Haftalık uygulanabilir bir program oluştur.",
+        "Antrenman günlerini planla.",
+        "Beslenme ve dinlenmeye dikkat et.",
+        "Her hafta ilerlemeni kontrol et."
+      ];
+
+    } else if (
+      text.includes("ders") ||
+      text.includes("sınav") ||
+      text.includes("öğren") ||
+      text.includes("çalış")
+    ) {
+      category = "Eğitim / Öğrenme";
+
+      plan = [
+        "Çalışacağın konuyu belirle.",
+        "Günlük çalışma süreni planla.",
+        "Konuyu küçük parçalara böl.",
+        "Öğrendiklerini tekrar et.",
+        "Haftalık ilerlemeni kontrol et."
+      ];
+
+    } else if (
+      text.includes("iş") ||
+      text.includes("para") ||
+      text.includes("kariyer") ||
+      text.includes("girişim")
+    ) {
+      category = "Kariyer / İş";
+
+      plan = [
+        "Hedefini netleştir.",
+        "Mevcut durumunu değerlendir.",
+        "Gerekli adımları belirle.",
+        "Her gün küçük bir ilerleme yap.",
+        "Sonuçlarını düzenli olarak değerlendir."
+      ];
+
+    } else {
+      plan = [
+        "Hedefini net olarak belirle.",
+        "Büyük hedefi küçük adımlara böl.",
+        "İlk uygulanabilir adımı seç.",
+        "Her gün ilerleme kaydet.",
+        "Sonuçlarını değerlendir ve planını geliştir."
+      ];
+    }
+
+    response.innerHTML =
+      "<strong>Bimo:</strong><br><br>" +
+      "Hedefini analiz ettim. 🧠<br><br>" +
+      "<strong>Kategori:</strong> " +
+      category +
+      "<br><br>" +
+      "<strong>Yol Haritan:</strong><br>" +
+      plan.map(function(step, index) {
+        return (index + 1) + ". " + step;
+      }).join("<br>") +
+      "<br><br>" +
+      "<strong>Yapamama lüksümüz yoktur. 🚀</strong>";
+
+  }, 800);
+}
       const question =
         document.getElementById("question").value.trim();
 
