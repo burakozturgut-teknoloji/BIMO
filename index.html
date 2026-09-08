@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bimo 1.0</title>
+  <title>Bimo 1.1</title>
 
   <style>
     * {
@@ -98,12 +98,16 @@
 
     <h1>Bimo</h1>
 
-    <div class="version">Bimo 1.0</div>
+    <div class="version">Bimo 1.1</div>
 
     <div class="slogan">
       Yapamama lüksümüz yoktur.
     </div>
-
+<div class="menu">
+    <button onclick="focusQuestion()">Bimo'ya Sor</button>
+    <button onclick="showInfo()">Bimo 1.1</button>
+    <button onclick="clearQuestion()">Temizle</button>
+</div>
     <div class="box">
 
       <textarea id="question"
@@ -144,7 +148,20 @@
 
       }, 800);
     }
-  </script>
+function focusQuestion() {
+    document.getElementById("question").focus();
+}
+
+function showInfo() {
+    document.getElementById("response").innerHTML =
+        "<strong>Bimo 1.1</strong><br>" +
+        "Bimo, hedeflerin için birlikte yol bulmana yardımcı olur.";
+}
+
+function clearQuestion() {
+    document.getElementById("question").value = "";
+    document.getElementById("response").innerHTML = "";
+}  </script>
 
 </body>
 </html>
