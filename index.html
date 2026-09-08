@@ -112,7 +112,11 @@
 
       <textarea id="question" autofocus
         placeholder="Bimo'ya ne yapmak istediğini yaz..."></textarea>
-
+<input
+  id="duration"
+  type="text"
+  placeholder="Günde ne kadar zaman ayırabilirsin? (örn. 1 saat)"
+>
       <button onclick="bimo()">Bimo'ya Sor</button>
 
       <div id="response"></div>
@@ -127,19 +131,29 @@ function bimo() {
   const question =
     document.getElementById("question").value.trim();
 
+  const duration =
+    document.getElementById("duration").value.trim();
+
   const response =
     document.getElementById("response");
 
   if (!question) {
     response.innerHTML =
-      "Önce ne yapmak istediğini yaz.";
+      "Önce hedefini yaz.";
+    return;
+  }
+
+  if (!duration) {
+    response.innerHTML =
+      "Hedefin için günde ne kadar zaman ayırabileceğini yaz.";
     return;
   }
 
   response.innerHTML =
-    "Bimo hedefini analiz ediyor... 🧠";
+    "Bimo kişisel planını hazırlıyor... 🧠";
 
   setTimeout(function() {
+
     const text = question.toLowerCase();
 
     let category = "Genel";
@@ -155,7 +169,7 @@ function bimo() {
 
       plan = [
         "Hedefini net olarak belirle.",
-        "Haftalık uygulanabilir bir program oluştur.",
+        "Haftalık antrenman programını oluştur.",
         "Antrenman günlerini planla.",
         "Beslenme ve dinlenmeye dikkat et.",
         "Her hafta ilerlemeni kontrol et."
@@ -165,16 +179,16 @@ function bimo() {
       text.includes("ders") ||
       text.includes("sınav") ||
       text.includes("öğren") ||
-      text.includes("çalış")
+      text.includes("ingilizce")
     ) {
       category = "Eğitim / Öğrenme";
 
       plan = [
-        "Çalışacağın konuyu belirle.",
+        "Öğrenmek istediğin konuyu belirle.",
         "Günlük çalışma süreni planla.",
         "Konuyu küçük parçalara böl.",
-        "Öğrendiklerini tekrar et.",
-        "Haftalık ilerlemeni kontrol et."
+        "Düzenli tekrar yap.",
+        "Her hafta ilerlemeni kontrol et."
       ];
 
     } else if (
@@ -209,12 +223,16 @@ function bimo() {
       "<strong>Kategori:</strong> " +
       category +
       "<br><br>" +
-      "<strong>Yol Haritan:</strong><br>" +
+      "<strong>Günlük Ayırabileceğin Süre:</strong> " +
+      duration +
+      "<br><br>" +
+      "<strong>Kişisel Yol Haritan:</strong><br>" +
       plan.map(function(step, index) {
         return (index + 1) + ". " + step;
       }).join("<br>") +
       "<br><br>" +
       "<strong>Yapamama lüksümüz yoktur. 🚀</strong>";
+
   }, 800);
 }
 function focusQuestion() {
