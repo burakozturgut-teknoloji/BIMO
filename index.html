@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bimo 1.3</title>
+  <title>Bimo 1.4</title>
 
   <style>
     * {
@@ -49,7 +49,24 @@
       font-size: 20px;
       font-weight: bold;
     }
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
 
+.menu button {
+    width: 100%;
+    margin-top: 0;
+    padding: 16px;
+    border: none;
+    border-radius: 14px;
+    background: white;
+    color: #0b0f14;
+    font-size: 17px;
+    font-weight: bold;
+}
     .box {
       background: #151b23;
       border-radius: 18px;
@@ -98,7 +115,7 @@
 
     <h1>Bimo</h1>
 
-    <div class="version">Bimo 1.3</div>
+    <div class="version">Bimo 1.4</div>
 
     <div class="slogan">
       Yapamama lüksümüz yoktur.
@@ -241,7 +258,7 @@ function focusQuestion() {
 
 function showInfo() {
     document.getElementById("response").innerHTML =
-        "<strong>Bimo 1.3</strong><br>" +
+        "<strong>Bimo 1.4</strong><br>" +
         "Bimo, hedeflerin için birlikte yol bulmana yardımcı olur.";
 }
 
