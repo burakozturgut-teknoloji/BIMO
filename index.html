@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bimo 1.4</title>
+  <title>Bimo 1.5</title>
 
   <style>
     * {
@@ -128,7 +128,7 @@
 
     <h1>Bimo</h1>
 
-    <div class="version">Bimo 1.4</div>
+    <div class="version">Bimo 1.5</div>
 
     <div class="slogan">
       Yapamama lüksümüz yoktur.
@@ -193,65 +193,88 @@ function bimo() {
     const text = question.toLowerCase();
 
     let category = "Genel";
-    let plan = [];
+let plan = [];
 
-    if (
-      text.includes("spor") ||
-      text.includes("fitness") ||
-      text.includes("kas") ||
-      text.includes("antrenman")
-    ) {
-      category = "Spor / Fitness";
+let minutes = 30;
 
-      plan = [
-        "Hedefini net olarak belirle.",
-        "Haftalık antrenman programını oluştur.",
-        "Antrenman günlerini planla.",
-        "Beslenme ve dinlenmeye dikkat et.",
-        "Her hafta ilerlemeni kontrol et."
-      ];
+const minuteMatch = duration.match(/(\d+)\s*dakika/i);
+const hourMatch = duration.match(/(\d+)\s*saat/i);
 
-    } else if (
-      text.includes("ders") ||
-      text.includes("sınav") ||
-      text.includes("öğren") ||
-      text.includes("ingilizce")
-    ) {
-      category = "Eğitim / Öğrenme";
+if (hourMatch) {
+    minutes = parseInt(hourMatch[1]) * 60;
+} else if (minuteMatch) {
+    minutes = parseInt(minuteMatch[1]);
+}
 
-      plan = [
-        "Öğrenmek istediğin konuyu belirle.",
-        "Günlük çalışma süreni planla.",
-        "Konuyu küçük parçalara böl.",
-        "Düzenli tekrar yap.",
-        "Her hafta ilerlemeni kontrol et."
-      ];
+minutes = Math.max(15, minutes);
 
-    } else if (
-      text.includes("iş") ||
-      text.includes("para") ||
-      text.includes("kariyer") ||
-      text.includes("girişim")
-    ) {
-      category = "Kariyer / İş";
+const time1 = Math.round(minutes * 0.15);
+const time2 = Math.round(minutes * 0.40);
+const time3 = Math.round(minutes * 0.20);
+const time4 = Math.round(minutes * 0.15);
+const time5 = minutes - time1 - time2 - time3 - time4;
 
-      plan = [
-        "Hedefini netleştir.",
-        "Mevcut durumunu değerlendir.",
-        "Gerekli adımları belirle.",
-        "Her gün küçük bir ilerleme yap.",
-        "Sonuçlarını düzenli olarak değerlendir."
-      ];
+if (
+    text.includes("spor") ||
+    text.includes("fitness") ||
+    text.includes("kas") ||
+    text.includes("antrenman")
+) {
+    category = "Spor / Fitness";
 
-    } else {
-      plan = [
-        "Hedefini net olarak belirle.",
-        "Büyük hedefi küçük adımlara böl.",
-        "İlk uygulanabilir adımı seç.",
-        "Her gün ilerleme kaydet.",
-        "Sonuçlarını değerlendir ve planını geliştir."
-      ];
-    }
+    plan = [
+        
+        "Isınma ve hazırlık – " + time1 + " dk",
+        "Ana antrenman – " + time2 + " dk",
+        "Kuvvet / kondisyon çalışması – " + time3 + " dk",
+        "Soğuma ve toparlanma – " + time4 + " dk",
+        "Günlük ilerlemeni takip et – " + time5 + " dk"
+    ];
+
+} else if (
+    text.includes("ders") ||
+    text.includes("sınav") ||
+    text.includes("öğren") ||
+    text.includes("ingilizce")
+) {
+    category = "Eğitim / Öğrenme";
+
+    plan = [
+        
+        "Konuyu gözden geçir – " + time1 + " dk",
+        "Ana konuyu çalış – " + time2 + " dk",
+        "Uygulama ve soru çözümü – " + time3 + " dk",
+        "Tekrar yap – " + time4 + " dk",
+        "Bugünkü ilerlemeni değerlendir – " + time5 + " dk"
+    ];
+
+} else if (
+    text.includes("iş") ||
+    text.includes("para") ||
+    text.includes("kariyer") ||
+    text.includes("girişim")
+) {
+    category = "Kariyer / İş";
+
+    plan = [
+        
+        "Mevcut durumunu değerlendir – " + time1 + " dk",
+        "Gerekli becerileri geliştir – " + time2 + " dk",
+        "Uygulanabilir bir adım at – " + time3 + " dk",
+        "Sonuçlarını değerlendir – " + time4 + " dk",
+        "Bir sonraki adımı belirle – " + time5 + " dk"
+    ];
+
+} else {
+    plan = [
+      
+        "Hedefini küçük adımlara böl – " + time1 + " dk",
+        "En önemli adıma odaklan – " + time2 + " dk",
+        "Uygulamaya geç – " + time3 + " dk",
+        "İlerlemeni kontrol et – " + time4 + " dk",
+        "Bir sonraki adımı belirle – " + time5 + " dk"
+    ];
+}
 
     response.innerHTML =
       "<strong>Bimo:</strong><br><br>" +
@@ -265,7 +288,7 @@ function bimo() {
       "<strong>Kişisel Yol Haritan:</strong><br>" +
       plan.map(function(step, index) {
         return (index + 1) + ". " + step;
-      }).join("<br>") +
+      }).join("<br>") +(
       "<br><br>" +
       "<strong>Yapamama lüksümüz yoktur. 🚀</strong>";
 
