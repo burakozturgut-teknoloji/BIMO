@@ -204,7 +204,15 @@ if (hourMatch) {
     minutes = parseInt(hourMatch[1]) * 60;
 } else if (minuteMatch) {
     minutes = parseInt(minuteMatch[1]);
-}if (
+}
+minutes = Math.max(15, minutes);
+
+const time1 = Math.round(minutes * 0.15);
+const time2 = Math.round(minutes * 0.40);
+const time3 = Math.round(minutes * 0.20);
+const time4 = Math.round(minutes * 0.15);
+const time5 = minutes - time1 - time2 - time3 - time4;
+if (
     text.includes("spor") ||
     text.includes("fitness") ||
     text.includes("kas") ||
