@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bimo 1.8</title>
+  <title>Bimo 1.9</title>
 
   <style>
     * {
@@ -128,7 +128,7 @@
 
     <h1>Bimo</h1>
 
-    <div class="version">Bimo 1.8</div>
+    <div class="version">Bimo 1.9</div>
 
     <div class="slogan">
       Yapamama lüksümüz yoktur.
@@ -156,13 +156,19 @@
       <button onclick="bimo()">Bimo'ya Sor</button>
 
       <div id="response"></div>
-
+<button
+  id="refreshPlan"
+  onclick="refreshPlan()"
+  style="display:none;"
+>
+  🔄 Planı Yenile
+</button>
     </div>
 
   </div>
 
   <script>
-  
+  let planMode = 0;
 function bimo() {
   const question =
     document.getElementById("question").value.trim();
@@ -191,7 +197,7 @@ function bimo() {
   setTimeout(function() {
 
     const text = question.toLowerCase();
-
+const currentMode = planMode % 3;
     let category = "Genel";
 let plan = [];
 
@@ -346,7 +352,78 @@ if (
         "Bir sonraki adımı belirle – " + time5 + " dk"
     ];
 }
+if (currentMode === 1) {
 
+    if (category === "Spor / Fitness") {
+        plan = [
+            "Hafif ısınma ve hazırlık — " + time1 + " dk",
+            "Ana egzersizlere odaklan — " + time2 + " dk",
+            "Tempo ve kondisyon çalışması — " + time3 + " dk",
+            "Eksik bölgelere destek çalışması — " + time4 + " dk",
+            "Soğuma ve günü değerlendir — " + time5 + " dk"
+        ];
+    } else if (category === "Eğitim / Öğrenme") {
+        plan = [
+            "Önceki bilgileri hızlıca hatırla — " + time1 + " dk",
+            "Ana konuyu yoğun şekilde çalış — " + time2 + " dk",
+            "Uygulama ve soru çözümü yap — " + time3 + " dk",
+            "Zorlandığın noktaları tekrar et — " + time4 + " dk",
+            "Öğrendiklerini değerlendir — " + time5 + " dk"
+        ];
+    } else if (category === "Kariyer / İş") {
+        plan = [
+            "Hedefini ve önceliğini belirle — " + time1 + " dk",
+            "En önemli kariyer adımına odaklan — " + time2 + " dk",
+            "Uygulama ve geliştirme yap — " + time3 + " dk",
+            "Eksiklerini kontrol et — " + time4 + " dk",
+            "Sonraki adımı planla — " + time5 + " dk"
+        ];
+    } else {
+        plan = [
+            "Hedefini yeniden değerlendir — " + time1 + " dk",
+            "En önemli noktaya odaklan — " + time2 + " dk",
+            "Farklı bir yöntem dene — " + time3 + " dk",
+            "Sonuçlarını kontrol et — " + time4 + " dk",
+            "Bir sonraki adımı belirle — " + time5 + " dk"
+        ];
+    }
+
+} else if (currentMode === 2) {
+
+    if (category === "Spor / Fitness") {
+        plan = [
+            "Mobilite ve ısınma — " + time1 + " dk",
+            "Ana hedefe yönelik çalışma — " + time2 + " dk",
+            "Yoğunluk ve kondisyon — " + time3 + " dk",
+            "Teknik ve form kontrolü — " + time4 + " dk",
+            "Soğuma ve ilerleme notu — " + time5 + " dk"
+        ];
+    } else if (category === "Eğitim / Öğrenme") {
+        plan = [
+            "Konuyu parçalara ayır — " + time1 + " dk",
+            "En önemli bilgileri öğren — " + time2 + " dk",
+            "Aktif şekilde uygulama yap — " + time3 + " dk",
+            "Kendini test et — " + time4 + " dk",
+            "Eksiklerini ve ilerlemeni değerlendir — " + time5 + " dk"
+        ];
+    } else if (category === "Kariyer / İş") {
+        plan = [
+            "Mevcut durumunu analiz et — " + time1 + " dk",
+            "En değerli geliştirme alanını seç — " + time2 + " dk",
+            "Somut bir çıktı oluştur — " + time3 + " dk",
+            "Çıktını gözden geçir — " + time4 + " dk",
+            "Sonraki hamleni belirle — " + time5 + " dk"
+        ];
+    } else {
+        plan = [
+            "Hedefini sadeleştir — " + time1 + " dk",
+            "En etkili yöntemi seç — " + time2 + " dk",
+            "Somut bir adım uygula — " + time3 + " dk",
+            "İlerlemeni ölç — " + time4 + " dk",
+            "Bir sonraki hedefi belirle — " + time5 + " dk"
+        ];
+    }
+}
     response.innerHTML =
       "<strong>Bimo:</strong><br><br>" +
       "Hedefini analiz ettim. 🧠<br><br>" +
@@ -364,6 +441,7 @@ if (
       "<strong>Yapamama lüksümüz yoktur. 🚀</strong>";
 
   }, 800);
+  document.getElementById("refreshPlan").style.display = "block";
 }
 function focusQuestion() {
     document.getElementById("question").focus();
@@ -371,7 +449,7 @@ function focusQuestion() {
 
 function showInfo() {
     document.getElementById("response").innerHTML =
-        "<strong>🧠 Bimo 1.8</strong><br><br>" +
+        "<strong>🧠 Bimo 1.9</strong><br><br>" +
         "Bimo, hedeflerini gerçekleştirmek için sana kişisel bir yol haritası oluşturur.<br><br>" +
         "🎯 Hedefini yaz.<br>" +
         "⏱️ Günlük ayırabileceğin zamanı belirt.<br>" +
@@ -384,7 +462,12 @@ function setDuration(value) {
 function clearQuestion() {
     document.getElementById("question").value = "";
     document.getElementById("response").innerHTML = "";
-}  </script>
+} 
+function refreshPlan() {
+    planMode++;
+    bimo();
+}
+ </script>
 
 </body>
 </html> 
