@@ -204,16 +204,6 @@ if (hourMatch) {
     minutes = parseInt(hourMatch[1]) * 60;
 } else if (minuteMatch) {
     minutes = parseInt(minuteMatch[1]);
-}
-
-minutes = Math.max(15, minutes);
-
-const time1 = Math.round(minutes * 0.15);
-const time2 = Math.round(minutes * 0.40);
-const time3 = Math.round(minutes * 0.20);
-const time4 = Math.round(minutes * 0.15);
-const time5 = minutes - time1 - time2 - time3 - time4;
-
 if (
     text.includes("spor") ||
     text.includes("fitness") ||
@@ -222,14 +212,39 @@ if (
 ) {
     category = "Spor / Fitness";
 
-    plan = [
-        
-        "Isınma ve hazırlık – " + time1 + " dk",
-        "Ana antrenman – " + time2 + " dk",
-        "Kuvvet / kondisyon çalışması – " + time3 + " dk",
-        "Soğuma ve toparlanma – " + time4 + " dk",
-        "Günlük ilerlemeni takip et – " + time5 + " dk"
-    ];
+    if (
+        text.includes("kilo") ||
+        text.includes("yağ") ||
+        text.includes("zayıf")
+    ) {
+        plan = [
+            "Isınma ve hareket hazırlığı – " + time1 + " dk",
+            "Kalori yakımına odaklan – " + time2 + " dk",
+            "Kardiyo / kondisyon çalışması – " + time3 + " dk",
+            "Soğuma ve toparlanma – " + time4 + " dk",
+            "Bugünkü ilerlemeni değerlendir – " + time5 + " dk"
+        ];
+    } else if (
+        text.includes("kas") ||
+        text.includes("güç") ||
+        text.includes("kuvvet")
+    ) {
+        plan = [
+            "Isınma ve hazırlık – " + time1 + " dk",
+            "Ana kuvvet çalışması – " + time2 + " dk",
+            "Kas gruplarına odaklan – " + time3 + " dk",
+            "Soğuma ve toparlanma – " + time4 + " dk",
+            "İlerlemeni takip et – " + time5 + " dk"
+        ];
+    } else {
+        plan = [
+            "Isınma ve hazırlık – " + time1 + " dk",
+            "Ana antrenmanı uygula – " + time2 + " dk",
+            "Kuvvet / kondisyon çalışması – " + time3 + " dk",
+            "Soğuma ve toparlanma – " + time4 + " dk",
+            "Bugünkü ilerlemeni değerlendir – " + time5 + " dk"
+        ];
+    }
 
 } else if (
     text.includes("ders") ||
@@ -239,14 +254,34 @@ if (
 ) {
     category = "Eğitim / Öğrenme";
 
-    plan = [
-        
-        "Konuyu gözden geçir – " + time1 + " dk",
-        "Ana konuyu çalış – " + time2 + " dk",
-        "Uygulama ve soru çözümü – " + time3 + " dk",
-        "Tekrar yap – " + time4 + " dk",
-        "Bugünkü ilerlemeni değerlendir – " + time5 + " dk"
-    ];
+    if (text.includes("ingilizce")) {
+        plan = [
+            "Yeni kelimeleri öğren – " + time1 + " dk",
+            "Okuma / dinleme çalışması yap – " + time2 + " dk",
+            "Cümle kurma ve uygulama – " + time3 + " dk",
+            "Öğrendiklerini tekrar et – " + time4 + " dk",
+            "Bugünkü gelişimini değerlendir – " + time5 + " dk"
+        ];
+    } else if (
+        text.includes("sınav") ||
+        text.includes("ders")
+    ) {
+        plan = [
+            "Konuyu gözden geçir – " + time1 + " dk",
+            "Ana konuyu çalış – " + time2 + " dk",
+            "Soru çözümü yap – " + time3 + " dk",
+            "Yanlışlarını tekrar et – " + time4 + " dk",
+            "Bugünkü performansını değerlendir – " + time5 + " dk"
+        ];
+    } else {
+        plan = [
+            "Konuyu gözden geçir – " + time1 + " dk",
+            "Ana konuyu öğren – " + time2 + " dk",
+            "Uygulama yap – " + time3 + " dk",
+            "Tekrar yap – " + time4 + " dk",
+            "İlerlemeni değerlendir – " + time5 + " dk"
+        ];
+    }
 
 } else if (
     text.includes("iş") ||
@@ -256,19 +291,42 @@ if (
 ) {
     category = "Kariyer / İş";
 
-    plan = [
-        
-        "Mevcut durumunu değerlendir – " + time1 + " dk",
-        "Gerekli becerileri geliştir – " + time2 + " dk",
-        "Uygulanabilir bir adım at – " + time3 + " dk",
-        "Sonuçlarını değerlendir – " + time4 + " dk",
-        "Bir sonraki adımı belirle – " + time5 + " dk"
-    ];
+    if (
+        text.includes("cv") ||
+        text.includes("özgeçmiş") ||
+        text.includes("iş bul")
+    ) {
+        plan = [
+            "Mevcut CV'ni incele – " + time1 + " dk",
+            "Deneyim ve becerilerini düzenle – " + time2 + " dk",
+            "CV'ni hedefe göre geliştir – " + time3 + " dk",
+            "Eksiklerini kontrol et – " + time4 + " dk",
+            "Bir sonraki başvuruyu belirle – " + time5 + " dk"
+        ];
+    } else if (
+        text.includes("girişim") ||
+        text.includes("iş kur")
+    ) {
+        plan = [
+            "Fikrini netleştir – " + time1 + " dk",
+            "Hedef kitleni belirle – " + time2 + " dk",
+            "Uygulanabilir bir adım seç – " + time3 + " dk",
+            "Sonuçları değerlendir – " + time4 + " dk",
+            "Bir sonraki adımı belirle – " + time5 + " dk"
+        ];
+    } else {
+        plan = [
+            "Mevcut durumunu değerlendir – " + time1 + " dk",
+            "Gerekli becerileri geliştir – " + time2 + " dk",
+            "Uygulanabilir bir adım at – " + time3 + " dk",
+            "Sonuçlarını değerlendir – " + time4 + " dk",
+            "Bir sonraki adımı belirle – " + time5 + " dk"
+        ];
+    }
 
 } else {
     plan = [
-      
-        "Hedefini küçük adımlara böl – " + time1 + " dk",
+        "Hedefini netleştir – " + time1 + " dk",
         "En önemli adıma odaklan – " + time2 + " dk",
         "Uygulamaya geç – " + time3 + " dk",
         "İlerlemeni kontrol et – " + time4 + " dk",
