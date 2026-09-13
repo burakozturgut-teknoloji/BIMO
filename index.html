@@ -424,8 +424,10 @@ if (currentMode === 1) {
         ];
     }
 }
+const modeLabel = currentMode === 0 ? "Plan 1 / 3" :
+                  currentMode === 1 ? "Plan 2 / 3" : "Plan 3 / 3";
     response.innerHTML =
-      "<strong>Bimo:</strong><br><br>" +
+      "<strong>Bimo:</strong> " + modeLabel + "<br><br>" +
       "Hedefini analiz ettim. 🧠<br><br>" +
       "<strong>Kategori:</strong> " +
       category +
