@@ -169,6 +169,7 @@
 
   <script>
   let planMode = 0;
+let completedSteps = [];
 function bimo() {
   const question =
     document.getElementById("question").value.trim();
@@ -426,6 +427,9 @@ if (currentMode === 1) {
 }
 const modeLabel = currentMode === 0 ? "Plan 1 / 3" :
                   currentMode === 1 ? "Plan 2 / 3" : "Plan 3 / 3";
+                  completedSteps = plan.map(function() {
+    return false;
+});
     response.innerHTML =
       "<strong>Bimo:</strong> " + modeLabel + "<br><br>" +
       "Hedefini analiz ettim. 🧠<br><br>" +
